@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Character controller referenced from: https://www.youtube.com/watch?v=4HpC--2iowE
+
+
 public class PlayerMovement : MonoBehaviour
 {
     //Create reference to character controller
