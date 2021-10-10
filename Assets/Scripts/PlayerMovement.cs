@@ -10,25 +10,18 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform cam;
 
-    public float speed = 6f;
+    public float speed = 3f;
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
-
-    //Call the Animator
-    private Animator anim;
+    
+    
 
     //Counter that increments when coins are picked up
     private int coinCounter = 0;
 
 
-    //private void Awake()
-    //{
-
-    //   // anim = this.getComponent<Animator>();
-
-    //}
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -62,11 +55,19 @@ public class PlayerMovement : MonoBehaviour
             //Apply move vector to character controller
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
+
+            //Play Walking animation
+            GetComponent<Animator>().SetInteger("AnimatorState", 1);
+
         }
 
-        //Enable walk animation after inputting keys
-        //if (anim != null)
-        //    anim.SetBool("isMoving");
+        else
+        {
+            //Play Idle Animation
+            GetComponent<Animator>().SetInteger("AnimatorState", 0);
+        }
+
+    
 
     }
 
@@ -77,9 +78,12 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag == "Coin")
         {
             Destroy(col.gameObject);
+
+            //Increment coin counter after colliding with coin
             coinCounter++;
         }
 
+        //If the coin counter equals 10, the scene manager switches to the game over screen
         if(coinCounter == 10)
         {
 
