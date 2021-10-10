@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         if(coinCounter == 10)
         {
 
+            //Load Game Over Screen
             SceneManager.LoadScene("End");
         }
 
