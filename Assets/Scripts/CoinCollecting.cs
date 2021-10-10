@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CoinCollecting : MonoBehaviour
 {
+    //Counter that increments when coins are picked up
+    private int coinCounter;
+    
     // Start is called before the first frame update
     void Start()
     {

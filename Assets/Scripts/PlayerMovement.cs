@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
 
     //Call the Animator
     private Animator anim;
+
+    //Counter that increments when coins are picked up
+    private int coinCounter = 0;
+
 
     //private void Awake()
     //{
@@ -65,5 +70,22 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    //Collision Detection Function
+    //If the player touches the coin, the coin is destroyed
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Coin")
+        {
+            Destroy(col.gameObject);
+            coinCounter++;
+        }
+
+        if(coinCounter == 10)
+        {
+
+            SceneManager.LoadScene("End");
+        }
+
+    }
 
 }
